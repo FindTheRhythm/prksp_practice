@@ -1,0 +1,14 @@
+**/target/
+**/out/
+**/classpath.txt
+.tools/apache-maven-*/
+.tools/*.zip
+*.class
+.idea/
+*.iml
+deliverables/
+
+**/node_modules/
+**/.logs/
+**/runs/
+**/install.log

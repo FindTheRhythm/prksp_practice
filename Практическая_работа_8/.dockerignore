@@ -1,0 +1,7 @@
+**/target
+evidence
+.git
+
+**/.logs
+**/runs
+**/node_modules

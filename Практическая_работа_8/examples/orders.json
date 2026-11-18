@@ -1,0 +1,252 @@
+[
+  {
+    "productId": 1,
+    "quantity": 1,
+    "address": "ул. Солнечная, д. 10, кв. 1"
+  },
+  {
+    "productId": 2,
+    "quantity": 2,
+    "address": "ул. Мира, д. 11, кв. 2"
+  },
+  {
+    "productId": 3,
+    "quantity": 3,
+    "address": "ул. Лесная, д. 12, кв. 3"
+  },
+  {
+    "productId": 4,
+    "quantity": 4,
+    "address": "ул. Цветочная, д. 13, кв. 4"
+  },
+  {
+    "productId": 5,
+    "quantity": 5,
+    "address": "ул. Зелёная, д. 14, кв. 5"
+  },
+  {
+    "productId": 6,
+    "quantity": 1,
+    "address": "ул. Солнечная, д. 15, кв. 6"
+  },
+  {
+    "productId": 7,
+    "quantity": 2,
+    "address": "ул. Мира, д. 16, кв. 7"
+  },
+  {
+    "productId": 8,
+    "quantity": 3,
+    "address": "ул. Лесная, д. 17, кв. 8"
+  },
+  {
+    "productId": 9,
+    "quantity": 4,
+    "address": "ул. Цветочная, д. 18, кв. 9"
+  },
+  {
+    "productId": 10,
+    "quantity": 5,
+    "address": "ул. Зелёная, д. 19, кв. 10"
+  },
+  {
+    "productId": 11,
+    "quantity": 1,
+    "address": "ул. Солнечная, д. 20, кв. 11"
+  },
+  {
+    "productId": 12,
+    "quantity": 2,
+    "address": "ул. Мира, д. 21, кв. 12"
+  },
+  {
+    "productId": 13,
+    "quantity": 3,
+    "address": "ул. Лесная, д. 22, кв. 13"
+  },
+  {
+    "productId": 14,
+    "quantity": 4,
+    "address": "ул. Цветочная, д. 23, кв. 14"
+  },
+  {
+    "productId": 15,
+    "quantity": 5,
+    "address": "ул. Зелёная, д. 24, кв. 15"
+  },
+  {
+    "productId": 16,
+    "quantity": 1,
+    "address": "ул. Солнечная, д. 25, кв. 16"
+  },
+  {
+    "productId": 17,
+    "quantity": 2,
+    "address": "ул. Мира, д. 26, кв. 17"
+  },
+  {
+    "productId": 18,
+    "quantity": 3,
+    "address": "ул. Лесная, д. 27, кв. 18"
+  },
+  {
+    "productId": 19,
+    "quantity": 4,
+    "address": "ул. Цветочная, д. 28, кв. 19"
+  },
+  {
+    "productId": 20,
+    "quantity": 5,
+    "address": "ул. Зелёная, д. 29, кв. 20"
+  },
+  {
+    "productId": 21,
+    "quantity": 1,
+    "address": "ул. Солнечная, д. 30, кв. 1"
+  },
+  {
+    "productId": 22,
+    "quantity": 2,
+    "address": "ул. Мира, д. 31, кв. 2"
+  },
+  {
+    "productId": 23,
+    "quantity": 3,
+    "address": "ул. Лесная, д. 32, кв. 3"
+  },
+  {
+    "productId": 24,
+    "quantity": 4,
+    "address": "ул. Цветочная, д. 33, кв. 4"
+  },
+  {
+    "productId": 25,
+    "quantity": 5,
+    "address": "ул. Зелёная, д. 34, кв. 5"
+  },
+  {
+    "productId": 26,
+    "quantity": 1,
+    "address": "ул. Солнечная, д. 35, кв. 6"
+  },
+  {
+    "productId": 27,
+    "quantity": 2,
+    "address": "ул. Мира, д. 36, кв. 7"
+  },
+  {
+    "productId": 28,
+    "quantity": 3,
+    "address": "ул. Лесная, д. 37, кв. 8"
+  },
+  {
+    "productId": 29,
+    "quantity": 4,
+    "address": "ул. Цветочная, д. 38, кв. 9"
+  },
+  {
+    "productId": 30,
+    "quantity": 5,
+    "address": "ул. Зелёная, д. 39, кв. 10"
+  },
+  {
+    "productId": 31,
+    "quantity": 1,
+    "address": "ул. Солнечная, д. 40, кв. 11"
+  },
+  {
+    "productId": 32,
+    "quantity": 2,
+    "address": "ул. Мира, д. 41, кв. 12"
+  },
+  {
+    "productId": 33,
+    "quantity": 3,
+    "address": "ул. Лесная, д. 42, кв. 13"
+  },
+  {
+    "productId": 34,
+    "quantity": 4,
+    "address": "ул. Цветочная, д. 43, кв. 14"
+  },
+  {
+    "productId": 35,
+    "quantity": 5,
+    "address": "ул. Зелёная, д. 44, кв. 15"
+  },
+  {
+    "productId": 36,
+    "quantity": 1,
+    "address": "ул. Солнечная, д. 45, кв. 16"
+  },
+  {
+    "productId": 37,
+    "quantity": 2,
+    "address": "ул. Мира, д. 46, кв. 17"
+  },
+  {
+    "productId": 38,
+    "quantity": 3,
+    "address": "ул. Лесная, д. 47, кв. 18"
+  },
+  {
+    "productId": 39,
+    "quantity": 4,
+    "address": "ул. Цветочная, д. 48, кв. 19"
+  },
+  {
+    "productId": 40,
+    "quantity": 5,
+    "address": "ул. Зелёная, д. 49, кв. 20"
+  },
+  {
+    "productId": 41,
+    "quantity": 1,
+    "address": "ул. Солнечная, д. 50, кв. 1"
+  },
+  {
+    "productId": 42,
+    "quantity": 2,
+    "address": "ул. Мира, д. 51, кв. 2"
+  },
+  {
+    "productId": 43,
+    "quantity": 3,
+    "address": "ул. Лесная, д. 52, кв. 3"
+  },
+  {
+    "productId": 44,
+    "quantity": 4,
+    "address": "ул. Цветочная, д. 53, кв. 4"
+  },
+  {
+    "productId": 45,
+    "quantity": 5,
+    "address": "ул. Зелёная, д. 54, кв. 5"
+  },
+  {
+    "productId": 46,
+    "quantity": 1,
+    "address": "ул. Солнечная, д. 55, кв. 6"
+  },
+  {
+    "productId": 47,
+    "quantity": 2,
+    "address": "ул. Мира, д. 56, кв. 7"
+  },
+  {
+    "productId": 48,
+    "quantity": 3,
+    "address": "ул. Лесная, д. 57, кв. 8"
+  },
+  {
+    "productId": 49,
+    "quantity": 4,
+    "address": "ул. Цветочная, д. 58, кв. 9"
+  },
+  {
+    "productId": 50,
+    "quantity": 5,
+    "address": "ул. Зелёная, д. 59, кв. 10"
+  }
+]

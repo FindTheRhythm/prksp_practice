@@ -1,0 +1,147 @@
+name: practices8
+services:
+  supplier-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: supplier
+      POSTGRES_USER: supplier
+      POSTGRES_PASSWORD: local-supplier-demo
+    volumes:
+      - supplier-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U supplier -d supplier"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  orders-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: orders
+      POSTGRES_USER: orders
+      POSTGRES_PASSWORD: local-orders-demo
+    volumes:
+      - orders-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orders -d orders"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  delivery-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: delivery
+      POSTGRES_USER: delivery
+      POSTGRES_PASSWORD: local-delivery-demo
+    volumes:
+      - delivery-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U delivery -d delivery"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  broker:
+    image: rabbitmq:3.13-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: delivery
+      RABBITMQ_DEFAULT_PASS: local-broker-demo
+    volumes:
+      - broker-data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+  supplier:
+    build: .
+    image: practices8-supplier:local
+    environment:
+      APP: supplier
+      DB_URL: jdbc:postgresql://supplier-db:5432/supplier
+      DB_USER: supplier
+      DB_PASSWORD: local-supplier-demo
+    healthcheck:
+      test: ["CMD", "java", "-cp", "/app", "practice.Probe"]
+      interval: 10s
+      timeout: 5s
+      start_period: 30s
+      retries: 20
+    depends_on:
+      supplier-db:
+        condition: service_healthy
+  orders:
+    build: .
+    image: practices8-orders:local
+    environment:
+      APP: orders
+      DB_URL: jdbc:postgresql://orders-db:5432/orders
+      DB_USER: orders
+      DB_PASSWORD: local-orders-demo
+      BROKER_HOST: broker
+      BROKER_USER: delivery
+      BROKER_PASSWORD: local-broker-demo
+      SUPPLIER_URL: http://supplier:8080
+    healthcheck:
+      test: ["CMD", "java", "-cp", "/app", "practice.Probe"]
+      interval: 10s
+      timeout: 5s
+      start_period: 30s
+      retries: 20
+    depends_on:
+      orders-db:
+        condition: service_healthy
+      broker:
+        condition: service_healthy
+      supplier:
+        condition: service_healthy
+  delivery:
+    build: .
+    image: practices8-delivery:local
+    environment:
+      APP: delivery
+      DB_URL: jdbc:postgresql://delivery-db:5432/delivery
+      DB_USER: delivery
+      DB_PASSWORD: local-delivery-demo
+      BROKER_HOST: broker
+      BROKER_USER: delivery
+      BROKER_PASSWORD: local-broker-demo
+    healthcheck:
+      test: ["CMD", "java", "-cp", "/app", "practice.Probe"]
+      interval: 10s
+      timeout: 5s
+      start_period: 30s
+      retries: 20
+    depends_on:
+      delivery-db:
+        condition: service_healthy
+      broker:
+        condition: service_healthy
+  gateway:
+    build: .
+    image: practices8-gateway:local
+    environment:
+      APP: gateway
+      SUPPLIER_URL: http://supplier:8080
+      ORDERS_URL: http://orders:8080
+      DELIVERY_URL: http://delivery:8080
+    ports:
+      - "127.0.0.1:8808:8080"
+    healthcheck:
+      test: ["CMD", "java", "-cp", "/app", "practice.Probe"]
+      interval: 10s
+      timeout: 5s
+      start_period: 30s
+      retries: 20
+    depends_on:
+      supplier:
+        condition: service_healthy
+      orders:
+        condition: service_healthy
+      delivery:
+        condition: service_healthy
+volumes:
+  supplier-data:
+  orders-data:
+  delivery-data:
+  broker-data:
+
+

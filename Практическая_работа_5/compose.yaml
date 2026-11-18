@@ -1,0 +1,89 @@
+name: practices5
+services:
+  traefik:
+    image: traefik:v3.6
+    command:
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+      - --ping=true
+      - --accesslog=true
+    environment:
+      DOCKER_API_VERSION: "1.44"
+    ports:
+      - "127.0.0.1:8055:80"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    healthcheck:
+      test: ["CMD", "traefik", "healthcheck", "--ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    depends_on:
+      orders:
+        condition: service_healthy
+      delivery:
+        condition: service_healthy
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: orders
+      POSTGRES_USER: orders
+      POSTGRES_PASSWORD: local-orders-demo
+    volumes:
+      - orders-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orders -d orders"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  orders:
+    build:
+      context: .
+      dockerfile: orders/Dockerfile
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/orders
+      DB_USER: orders
+      DB_PASSWORD: local-orders-demo
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.p5-orders.rule=PathPrefix(`/api/orders`)
+      - traefik.http.routers.p5-orders.entrypoints=web
+      - traefik.http.services.p5-orders.loadbalancer.server.port=8080
+      - traefik.http.services.p5-orders.loadbalancer.healthcheck.path=/actuator/health
+    healthcheck:
+      test: ["CMD", "java", "-cp", "/app", "practice.Probe"]
+      interval: 10s
+      timeout: 5s
+      start_period: 25s
+      retries: 20
+    depends_on:
+      db:
+        condition: service_healthy
+  delivery:
+    build:
+      context: .
+      dockerfile: delivery/Dockerfile
+    deploy:
+      replicas: 2
+    environment:
+      ORDERS_URL: http://orders:8080
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.p5-delivery.rule=PathPrefix(`/api/deliveries`)
+      - traefik.http.routers.p5-delivery.entrypoints=web
+      - traefik.http.services.p5-delivery.loadbalancer.server.port=8080
+      - traefik.http.services.p5-delivery.loadbalancer.healthcheck.path=/actuator/health
+      - traefik.http.services.p5-delivery.loadbalancer.healthcheck.interval=2s
+    healthcheck:
+      test: ["CMD", "java", "-cp", "/app", "practice.Probe"]
+      interval: 10s
+      timeout: 5s
+      start_period: 25s
+      retries: 20
+    depends_on:
+      orders:
+        condition: service_healthy
+volumes:
+  orders-data:
+
